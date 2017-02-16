@@ -5,12 +5,9 @@ import {fetchGame, saveGame, updateGame} from './actions';
 import GameForm from './GameForm';
 
 class GameFormPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirect: false
-    };
-  }
+  state = {
+    redirect: false
+  };
 
   componentDidMount = () => {
     const {match} = this.props;

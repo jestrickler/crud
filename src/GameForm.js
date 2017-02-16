@@ -2,16 +2,13 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 
 class GameForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      _id: this.props.game ? this.props.game._id : null,
-      title: this.props.game ? this.props.game.title : '',
-      cover: this.props.game ? this.props.game.cover : '',
-      errors: {},
-      loading: false
-    };
-  }
+  state = {
+    _id: this.props.game ? this.props.game._id : null,
+    title: this.props.game ? this.props.game.title : '',
+    cover: this.props.game ? this.props.game.cover : '',
+    errors: {},
+    loading: false
+  };
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({
