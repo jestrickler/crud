@@ -2,19 +2,22 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 
 class GameForm extends Component {
-  state = {
-    _id: this.props.game ? this.props.game._id : null,
-    title: this.props.game ? this.props.game.title : '',
-    cover: this.props.game ? this.props.game.cover : '',
-    errors: {},
-    loading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      _id: this.props.game ? this.props.game._id : null,
+      title: this.props.game ? this.props.game.title : '',
+      cover: this.props.game ? this.props.game.cover : '',
+      errors: {},
+      loading: false
+    };
+  }
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({
-      _id: nextProps.game._id,
-      title: nextProps.game.title,
-      cover: nextProps.game.cover,
+      _id: nextProps.game ? nextProps.game._id : null,
+      title: nextProps.game ? nextProps.game.title : '',
+      cover: nextProps.game ? nextProps.game.cover : '',
     });
   };
 
@@ -47,7 +50,7 @@ class GameForm extends Component {
   render() {
     const form = (
       <form className={classnames("ui", "form", {loading: this.state.loading})} onSubmit={this.handleSubmit}>
-        <h1>New Game</h1>
+        <h1>{this.state._id ? 'Edit' : 'New'} Game</h1>
 
         {this.state.errors.global &&
           <div className="ui negative message">

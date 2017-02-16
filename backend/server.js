@@ -54,7 +54,7 @@ mongodb.MongoClient.connect(dbUrl, function (err, db) {
         {returnOriginal: false},
         (err, result) => {
           if (err) {
-            res.status(500).json({errors: {global: "Error saving game"}})
+            res.status(500).json({errors: {global: "Error updating game"}})
           } else {
             res.json({game: result.value});
           }
@@ -68,7 +68,7 @@ mongodb.MongoClient.connect(dbUrl, function (err, db) {
   app.delete('/api/games/:_id', (req, res) => {
     db.collection('games').deleteOne({_id: new mongodb.ObjectID(req.params._id)}, (err, r) => {
       if (err) {
-        res.status(500).json({errors: {global: "Error saving game"}})
+        res.status(500).json({errors: {global: "Error deleting game"}})
       } else {
         res.json({});
       }
